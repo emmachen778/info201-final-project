@@ -18,7 +18,7 @@ server <- function(input, output) {
     state.data$date <- filter(merged.data, Year >= min(input$range), Year <= max(input$range))$Date
     p <- plot_ly(data = state.data, type = "scatter", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Mean Home Sale Price ($)"),
-             title = paste("Mean Home Sale Price", input$range))
+             title = paste("Mean Home Sale Price", min(input$range), "-", max(input$range)))
     return(p)
   })
 }
