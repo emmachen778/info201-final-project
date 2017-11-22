@@ -1,1 +1,0 @@
-qndl.api <- "VxzNx6BrQ1-yEjABCyap"
