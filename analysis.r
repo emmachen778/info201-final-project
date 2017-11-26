@@ -1,6 +1,7 @@
 library(Quandl)
 library(dplyr)
 library(stringr)
+library(reshape2)
 
 source("keys.R")
 Quandl.api_key(qndl.api)
@@ -23,12 +24,12 @@ GetCityData <- function(city) {
   rent.prices <- rent.prices %>% 
     mutate(Year = str_replace(Date, "-.*", "")) %>% 
     group_by(Year) %>% 
-    summarize("Mean Rental Price" = mean(Value))
+    summarize("MRP" = mean(Value))
   sale.prices <- Quandl(sale.query)
   sale.prices <- sale.prices %>% 
     mutate(Year = str_replace(Date, "-.*", "")) %>% 
     group_by(Year) %>% 
-    summarize("Mean Sale Price" = mean(Value))
+    summarize("MSP" = mean(Value))
   data <- inner_join(rent.prices, sale.prices, by = "Year")
   
   return(data)
@@ -38,7 +39,6 @@ states$full.code <- paste0("ZILLOW/S", states$CODE, "_MSPAH")
 merged.data <- Quandl(states$full.code)
 colnames(merged.data) <- c("Date", states$AREA)
 merged.data$Year <- as.numeric(str_replace(merged.data$Date, "-.*", ""))
-
 
 
 
