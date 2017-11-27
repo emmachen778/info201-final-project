@@ -6,13 +6,9 @@ library(reshape2)
 source("keys.R")
 Quandl.api_key(qndl.api)
 
-cities <- read.table("http://static.quandl.com/zillow/areas_city.txt", sep = "|", stringsAsFactors = F)
-colnames(cities) <- cities[1,]
-cities <- cities[-1,]
+cities <- read.table("http://static.quandl.com/zillow/areas_city.txt", header = T, sep = "|", stringsAsFactors = F)
 
-states <- read.table("http://static.quandl.com/zillow/areas_state.txt", sep = "|", stringsAsFactors = F)
-colnames(states) <- states[1,]
-states <- states[-1,]
+states <- read.table("http://static.quandl.com/zillow/areas_state.txt", header = T, sep = "|", stringsAsFactors = F)
 
 GetCityData <- function(city) {
   code <- cities %>% 
