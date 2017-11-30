@@ -1,10 +1,11 @@
 library(shiny)
 library(plotly)
 library(leaflet)
+library(shinythemes)
 
 source("data.R")
 
-ui <- fluidPage(
+ui <- fluidPage(theme = shinytheme("flatly"),
   navbarPage("Zillow Housing Data",
              
              tabPanel("State Data",
