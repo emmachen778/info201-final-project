@@ -7,34 +7,48 @@ library(stringr)
 library(plotly)
 library(reshape2)
 
-source("analysis.R")
+source("data.R")
 
 server <- function(input, output) {
   output$state.plot <- renderPlotly({
-    state.data <- merged.data %>% 
-      filter(Year >= min(input$range), Year <= max(input$range)) %>% 
+    state.data <- GetStateData(input$states) 
+    melt.data <- state.data %>% 
       select(input$states) %>% 
       melt() 
-    state.data$date <- filter(merged.data, Year >= min(input$range), Year <= max(input$range))$Date
-    p <- plot_ly(data = state.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
-      layout(xaxis = list(title = "Date"), yaxis = list(title = "Mean Home Sale Price ($)"),
-             title = paste("Mean Home Sale Price", min(input$range), "-", max(input$range)))
+    melt.data$date <- state.data$Date
+    melt.data$year <- state.data$Year
+    melt.data <- filter(melt.data, year >= min(input$range), year <= max(input$range))
+    p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
+      layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Home Sale Price ($)"),
+             title = paste("Median Home Sale Price", min(input$range), "-", max(input$range)))
     return(p)
   })
   
   output$city.sale.plot <- renderPlotly({
-    city.data <- GetCityData(input$city)
-    p <- plot_ly(data = city.data, type = "scatter", mode = "lines", x = ~Year, y = ~MSP) %>% 
-      layout(xaxis = list(title = "Year"), yaxis = list(title = "Mean Sale Price ($)"),
-             title = paste("Mean Sale Price in", input$city))
+    sale.data <- GetCitySaleData(input$cities)
+    melt.data <- sale.data %>% 
+      select(input$cities) %>% 
+      melt() 
+    melt.data$date <- sale.data$Date
+    p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
+      layout(xaxis = list(title = "Year"), yaxis = list(title = "Median Sale Price ($)"),
+             title = "Median Sale Price over Time")
+    return(p)
   })
   
   output$city.rental.plot <- renderPlotly({
-    city.data <- GetCityData(input$city)
-    p <- plot_ly(data = city.data, type = "scatter", mode = "lines", x = ~Year, y = ~MRP) %>% 
-      layout(xaxis = list(title = "Year"), yaxis = list(title = "Mean Rental Price ($)"),
-             title = paste("Mean Rental Price in", input$city))
+    rent.data <- GetCityRentData(input$cities)
+    melt.data <- rent.data %>% 
+      select(input$cities) %>% 
+      melt() 
+    melt.data$date <- rent.data$Date
+    p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
+      layout(xaxis = list(title = "Year"), yaxis = list(title = "Median Rental Price ($)"),
+             title = "Median Rental Price over Time")
+    return(p)
   })
 
 }
+
+
 
