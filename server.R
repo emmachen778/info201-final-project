@@ -6,6 +6,8 @@ library(dplyr)
 library(stringr)
 library(plotly)
 library(reshape2)
+library(leaflet)
+library(ggmap)
 
 source("data.R")
 
@@ -47,8 +49,30 @@ server <- function(input, output) {
              title = "Median Rental Price over Time")
     return(p)
   })
+  
+  output$map <- renderLeaflet({
+   city.loc <- data.frame(cities = input$cities)
+   loc <- geocode(as.character(city.loc$cities))
+   city.loc$lon <- loc$lon
+   city.loc$lat <- loc$lat
+   
+   percent.change <- GetCitySaleData(input$cities) %>% 
+     select(input$cities) %>% 
+     melt() %>% 
+     group_by(variable) %>% 
+     summarize(change = PercentChange(value))
+   city.loc$change <- percent.change$change
+   
+   return(leaflet() %>% 
+            addTiles() %>% 
+            addCircleMarkers(data = city.loc, radius = ~change / 10))
+  })
 
 }
+
+
+
+    
 
 
 

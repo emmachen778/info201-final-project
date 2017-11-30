@@ -1,5 +1,6 @@
 library(shiny)
 library(plotly)
+library(leaflet)
 
 source("data.R")
 
@@ -24,6 +25,7 @@ ui <- fluidPage(
                           selectInput("cities", label = "Select Your Desired City/Cities", choices = wa.cities$city, multiple = T, selected = "Seattle")
                         ),
                         mainPanel(
+                          leafletOutput("map"),
                           plotlyOutput("city.sale.plot"),
                           plotlyOutput("city.rental.plot")
                         )

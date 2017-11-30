@@ -1,4 +1,8 @@
 source("keys.R")
+
+library(httr)
+library(jsonlite)
+
 Quandl.api_key(qndl.api)
 
 cities <- read.table("http://static.quandl.com/zillow/areas_city.txt", sep = "|", stringsAsFactors = F)
@@ -40,6 +44,10 @@ GetStateData <- function(my.states) {
   return(data)
 }
 
-
+PercentChange <- function(vector) {
+  end <- vector[length(vector)]
+  start <- vector[1]
+  return((end - start) / start * 100)
+}
 
 
