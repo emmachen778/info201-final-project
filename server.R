@@ -1,7 +1,5 @@
 library(shiny)
 library(Quandl)
-library(httr)
-library(jsonlite)
 library(dplyr)
 library(stringr)
 library(plotly)

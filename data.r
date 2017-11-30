@@ -1,8 +1,5 @@
 source("keys.R")
 
-library(httr)
-library(jsonlite)
-
 Quandl.api_key(qndl.api)
 
 cities <- read.table("http://static.quandl.com/zillow/areas_city.txt", sep = "|", stringsAsFactors = F)
