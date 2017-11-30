@@ -23,7 +23,6 @@ GetCityRentData <- function(my.cities) {
   selected <- filter(wa.cities, city %in% my.cities)
   rent.prices <- Quandl(selected$rent.code)
   colnames(rent.prices) <- c("Date", selected$city)
-  
   return(rent.prices)
 }
 
@@ -31,7 +30,6 @@ GetCitySaleData <- function(my.cities) {
   selected <- filter(wa.cities, city %in% my.cities)
   sale.prices <- Quandl(selected$sale.code)
   colnames(sale.prices) <- c("Date", selected$city)
-  
   return(sale.prices)
 }
 
@@ -40,7 +38,6 @@ GetStateData <- function(my.states) {
   data <- Quandl(selected$full.code)
   colnames(data) <- c("Date", selected$AREA)
   data$Year <- as.numeric(str_replace(data$Date, "-.*", ""))
-  
   return(data)
 }
 
