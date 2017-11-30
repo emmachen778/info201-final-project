@@ -32,7 +32,7 @@ server <- function(input, output) {
     melt.data$date <- sale.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Year"), yaxis = list(title = "Median Sale Price ($)"),
-             title = "Median Sale Price over Time")
+             title = "Median Sale Price Over Time")
     return(p)
   })
   
@@ -44,7 +44,7 @@ server <- function(input, output) {
     melt.data$date <- rent.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Year"), yaxis = list(title = "Median Rental Price ($)"),
-             title = "Median Rental Price over Time")
+             title = "Median Rental Price Over Time")
     return(p)
   })
 
