@@ -5,8 +5,14 @@ library(shinythemes)
 
 source("data.R")
 
-ui <- fluidPage( theme = shinytheme('flatly'),
+ui <- fluidPage(theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
+             tabPanel("Home",
+                      splitLayout(cellWidths = c("35%", "65%"),
+                                  includeMarkdown("quandl.md"),
+                                  includeMarkdown("welcome.md")
+                      )
+             ),
              tabPanel("State Data",
                       sidebarLayout(
                         sidebarPanel(
@@ -18,12 +24,8 @@ ui <- fluidPage( theme = shinytheme('flatly'),
                           plotlyOutput("state.plot")                       
                           )
                       )
-             tabPanel("Home",
-                      splitLayout(cellWidths = c("35%", "65%"),
-                        includeMarkdown("quandl.md"),
-                        includeMarkdown("welcome.md")
-                      )
              ),
+             
              tabPanel("City Data",
                       sidebarLayout(
                         sidebarPanel(
