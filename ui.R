@@ -8,9 +8,9 @@ source("data.R")
 ui <- fluidPage(theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
-                      splitLayout(cellWidths = c("35%", "65%"),
-                                  includeMarkdown("quandl.md"),
-                                  includeMarkdown("welcome.md")
+                      fluidRow(
+                        column(width = 3, offset = 1, includeMarkdown("quandl.md")),
+                        column(7, includeMarkdown("welcome.md"))
                       )
              ),
              tabPanel("State Data",
