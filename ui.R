@@ -8,16 +8,10 @@ source("data.R")
 ui <- fluidPage(theme = shinytheme("flatly"),
   navbarPage("Zillow Housing Data",
              
-             tabPanel("State Data",
-                      sidebarLayout(
-                        sidebarPanel(
-                          selectInput("states", label = "Select Your Desired State(s)", choices = states$AREA, multiple = T, selected = "Washington"),
-                          sliderInput("range", label = "Select a Year Range", sep = "", min = 1996, max = as.integer(format(Sys.Date(), "%Y")) - 1, 
-                                      value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1))
-                        ),
-                        mainPanel(
-                          plotlyOutput("state.plot")                       
-                          )
+             tabPanel("Home",
+                      splitLayout(cellWidths = c("35%", "65%"),
+                        includeMarkdown("quandl.md"),
+                        includeMarkdown("welcome.md")
                       )
              ),
              tabPanel("City Data",
