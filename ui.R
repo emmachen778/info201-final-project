@@ -21,8 +21,11 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                                       value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1))
                         ),
                         mainPanel(
-                          plotlyOutput("state.plot")                       
+                          tabsetPanel(
+                            tabPanel("Sales", plotlyOutput("state.plot")), 
+                            tabPanel("Rentals", plotlyOutput("state.rent.plot"))
                           )
+                        )
                       )
              ),
              

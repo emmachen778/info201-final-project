@@ -11,7 +11,7 @@ source("data.R")
 
 server <- function(input, output) {
   output$state.plot <- renderPlotly({
-    state.data <- GetStateData(input$states) 
+    state.data <- GetStateSaleData(input$states) 
     melt.data <- state.data %>% 
       select(input$states) %>% 
       melt() 
@@ -21,6 +21,20 @@ server <- function(input, output) {
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Home Sale Price ($)"),
              title = paste("Median Home Sale Price", min(input$range), "-", max(input$range)))
+    return(p) 
+  })
+  
+  output$state.rent.plot <- renderPlotly({
+    state.data <- GetStateRentData(input$states) 
+    melt.data <- state.data %>% 
+      select(input$states) %>% 
+      melt() 
+    melt.data$date <- state.data$Date
+    melt.data$year <- state.data$Year
+    melt.data <- filter(melt.data, year >= min(input$range), year <= max(input$range))
+    p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
+      layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Home Sale Price ($)"),
+             title = paste("Median Home Rental Price", min(input$range), "-", max(input$range)))
     return(p) 
   })
   
