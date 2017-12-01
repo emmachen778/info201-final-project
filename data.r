@@ -14,7 +14,8 @@ wa.cities$sale.code <- paste0("ZILLOW/C", wa.cities$CODE, "_MSPAH")
 states <- read.table("http://static.quandl.com/zillow/areas_state.txt", sep = "|", stringsAsFactors = F)
 colnames(states) <- states[1,]
 states <- states[-1,]
-states$full.code <- paste0("ZILLOW/S", states$CODE, "_MSPAH")
+states$sale.code <- paste0("ZILLOW/S", states$CODE, "_MSPAH")
+states$rent.code <- paste0("ZILLOW/S", states$CODE, "_MRPAH")
 
 GetCityRentData <- function(my.cities) {
   selected <- filter(wa.cities, city %in% my.cities)
@@ -30,9 +31,17 @@ GetCitySaleData <- function(my.cities) {
   return(sale.prices)
 }
 
-GetStateData <- function(my.states) {
+GetStateSaleData <- function(my.states) {
   selected <- filter(states, AREA %in% my.states)
-  data <- Quandl(selected$full.code)
+  data <- Quandl(selected$sale.code)
+  colnames(data) <- c("Date", selected$AREA)
+  data$Year <- as.numeric(str_replace(data$Date, "-.*", ""))
+  return(data)
+}
+
+GetStateRentData <- function(my.states) {
+  selected <- filter(states, AREA %in% my.states)
+  data <- Quandl(selected$rent.code)
   colnames(data) <- c("Date", selected$AREA)
   data$Year <- as.numeric(str_replace(data$Date, "-.*", ""))
   return(data)
