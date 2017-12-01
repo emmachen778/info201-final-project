@@ -5,9 +5,11 @@ library(shinythemes)
 
 source("data.R")
 
-ui <- fluidPage(theme = shinytheme("flatly"),
+ui <- fluidPage( theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
-             
+             tabPanel ("Home",
+               mainPanel()
+             ),
              tabPanel("State Data",
                       sidebarLayout(
                         sidebarPanel(
@@ -26,9 +28,18 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                           selectInput("cities", label = "Select Your Desired City/Cities", choices = wa.cities$city, multiple = T, selected = "Seattle")
                         ),
                         mainPanel(
-                          leafletOutput("map"),
-                          plotlyOutput("city.sale.plot"),
-                          plotlyOutput("city.rental.plot")
+                          tabsetPanel(
+                            tabPanel(
+                              "Map", tags$h3("Change in Median Sale Prices"), leafletOutput("map"),
+                              tags$div(tags$br(),
+                                       tags$p("This map shows the change in median sale prices from over time for the selected cities. 
+                                              The circle sizes are scaled relative to the percent change in median sale prices over time.")
+                                       
+                              )
+                              ),
+                            tabPanel("Sales", tags$h3("Median Sale Prices"), plotlyOutput("city.sale.plot")),
+                            tabPanel("Rentals", tags$h3("Median Rental Prices"), plotlyOutput("city.rental.plot"))
+                          )
                         )
                       )
              )
