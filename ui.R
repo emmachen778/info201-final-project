@@ -39,16 +39,25 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                             tabPanel(
                               "Map", tags$h3("Change in Median Sale Prices"), leafletOutput("map"),
                               tags$div(tags$br(),
-                                       tags$p("This map shows the change in median sale prices from over time for the selected cities. 
+                                       tags$p("This map shows the location of the selected city/cities, indicated by a circle. 
                                               The circle sizes are scaled relative to the percent change in median sale prices over time.")
                                        
                               )
                               ),
-                            tabPanel("Sales", tags$h3("Median Sale Prices"), plotlyOutput("city.sale.plot")),
-                            tabPanel("Rentals", tags$h3("Median Rental Prices"), plotlyOutput("city.rental.plot"))
+                            tabPanel("Sales", plotlyOutput("city.sale.plot")),
+                            tabPanel("Rentals", plotlyOutput("city.rental.plot"))
                           )
                         )
                       )
+             ),
+             tabPanel("Predicted Prices for a City",
+               sidebarLayout(
+                 sidebarPanel(
+                   selectInput("city", label = "Select Your Desired City", choices = wa.cities$city, multiple = F, selected = "Seattle")
+                 ), mainPanel(
+                   tabPanel("Sales", plotlyOutput("predict.sale"))
+                 )
+               )
              )
   )
 )

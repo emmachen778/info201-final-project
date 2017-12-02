@@ -6,6 +6,7 @@ library(plotly)
 library(reshape2)
 library(leaflet)
 library(ggmap)
+library(prophet)
 
 source("data.R")
 
@@ -45,7 +46,7 @@ server <- function(input, output) {
       melt() 
     melt.data$date <- sale.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
-      layout(xaxis = list(title = "Year"), yaxis = list(title = "Median Sale Price ($)"),
+      layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Sale Price ($)"),
              title = "Median Sale Price Over Time")
     return(p)
   })
@@ -57,7 +58,7 @@ server <- function(input, output) {
       melt() 
     melt.data$date <- rent.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
-      layout(xaxis = list(title = "Year"), yaxis = list(title = "Median Rental Price ($)"),
+      layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Rental Price ($)"),
              title = "Median Rental Price Over Time")
     return(p)
   })
@@ -79,6 +80,17 @@ server <- function(input, output) {
     return(leaflet() %>% 
              addTiles() %>% 
              addCircleMarkers(data = city.loc, radius = ~change / 10, label = ~label))
+  })
+  
+  output$predict.sale <- renderPlotly({
+    predict.data <- PredictCitySalePrice(input$city)
+    melt.data <- predict.data %>% 
+      select(Predicted, Actual) %>% 
+      melt()
+    melt.data$date <- predict.data$Date
+    p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
+      layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Sale Price ($)"),
+             title = "Median Sale Price for Current Data and Next 5 Years")
   })
   
 }

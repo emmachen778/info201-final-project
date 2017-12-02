@@ -53,4 +53,18 @@ PercentChange <- function(vector) {
   return((end - start) / start * 100)
 }
 
+PredictCitySalePrice <- function(city) {
+  data <- GetCitySaleData(city) 
+  colnames(data) <- c("ds", "y")
+  model <- prophet(data)
+  future <- make_future_dataframe(model, periods = 60, freq = "month")
+  forecast <- predict(model, future) %>% 
+    select(ds, yhat)
+  forecast$ds <- as.Date(forecast$ds)
+  join.data <- left_join(forecast, data, by = "ds")
+  colnames(join.data) <- c("Date", "Predicted", "Actual")
+  return(join.data)
+}
+
+
 
