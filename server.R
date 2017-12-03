@@ -93,4 +93,14 @@ server <- function(input, output) {
              title = "Median Sale Price for Current Data and Next 5 Years")
   })
   
+  output$predict.rent <- renderPlotly({
+    predict.data <- PredictCityRentalPrice(input$city)
+    melt.data <- predict.data %>% 
+      select(Predicted, Actual) %>% 
+      melt()
+    melt.data$date <- predict.data$Date
+    p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
+      layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Rental Price ($)"),
+             title = "Median Rental Price for Current Data and Next 5 Years")
+  })
 }

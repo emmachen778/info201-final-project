@@ -66,5 +66,17 @@ PredictCitySalePrice <- function(city) {
   return(join.data)
 }
 
+PredictCityRentalPrice <- function(city) {
+  data <- GetCityRentData(city) 
+  colnames(data) <- c("ds", "y")
+  model <- prophet(data)
+  future <- make_future_dataframe(model, periods = 60, freq = "month")
+  forecast <- predict(model, future) %>% 
+    select(ds, yhat)
+  forecast$ds <- as.Date(forecast$ds)
+  join.data <- left_join(forecast, data, by = "ds")
+  colnames(join.data) <- c("Date", "Predicted", "Actual")
+  return(join.data)
+}
 
 
