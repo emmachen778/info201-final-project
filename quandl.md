@@ -3,7 +3,7 @@ This application uses the [Quandl API](https://www.quandl.com/data/ZILLOW-Zillow
 
 We introduced several new R libraries to help format the application and wrangle the data:
 * **Quandl** - to access and utilize the API
-* **prophet** - implements machine learning using an automatic forecasting procedure
+* **prophet** - to implement machine learning using an automatic forecasting procedure
 * **reshape2** - to flexibly restructure and aggregate the data
 * **leaflet** - to facilitate the implementation of the map visualization
 * **ggmap** - to create the map used in one of the visualizations
