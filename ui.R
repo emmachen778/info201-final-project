@@ -1,11 +1,20 @@
+# Library to use shiny
 library(shiny)
+
+# Libraries for graphing - leaflet for maps, plotly for everything else
 library(plotly)
 library(leaflet)
+
+# Themes to make shiny prettier
 library(shinythemes)
 
+# Library to use insert markdown documents into ui
+library(markdown)
+
+# Loading in data for use in inputs
 source("data.R")
 
-ui <- fluidPage(shinythemes::themeSelector(),
+ui <- fluidPage(theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
                       fluidRow(
@@ -26,8 +35,10 @@ ui <- fluidPage(shinythemes::themeSelector(),
                         ),
                         mainPanel(
                           tabsetPanel(
-                            tabPanel("Sales", plotlyOutput("state.plot")), 
-                            tabPanel("Rentals", plotlyOutput("state.rent.plot"))
+                            tabPanel("Sales", plotlyOutput("state.plot"),
+                                     tags$p('**Not all states have median sale data available.')), 
+                            tabPanel("Rentals", plotlyOutput("state.rent.plot"),
+                                     tags$p('**Median rental data begins at various times for each state, starting at 2010'))
                           )
                         )
                       )
@@ -55,7 +66,7 @@ ui <- fluidPage(shinythemes::themeSelector(),
                       )
              ),
              
-             tabPanel("Predicted Prices for a City",
+             tabPanel("Predicted City Prices",
                sidebarLayout(
                  sidebarPanel(
                    selectInput("city", label = "Select Your Desired City", choices = wa.cities$city, multiple = F, selected = "Seattle")
