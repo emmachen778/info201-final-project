@@ -6,7 +6,6 @@ library(plotly)
 library(reshape2)
 library(leaflet)
 library(ggmap)
-library(prophet)
 
 source("data.R")
 
