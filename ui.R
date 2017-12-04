@@ -54,7 +54,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                       )
              ),
              
-             tabPanel("Predicted Prices for a City",
+             tabPanel("Predicted City Prices",
                sidebarLayout(
                  sidebarPanel(
                    selectInput("city", label = "Select Your Desired City", choices = wa.cities$city, multiple = F, selected = "Seattle")
