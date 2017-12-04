@@ -18,6 +18,9 @@ ui <- fluidPage(theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
                       fluidRow(
+                        column(width = 12, img(src="banner.png", style = "display: block; margin-left: auto; margin-right: auto; width: 100%;"))
+                      ),
+                      fluidRow(
                         column(width = 3, offset = 1, includeMarkdown("quandl.md")),
                         column(7, includeMarkdown("welcome.md"))
                       )
