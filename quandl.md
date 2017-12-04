@@ -8,3 +8,4 @@ We introduced several new R libraries to help format the application and wrangle
 * **leaflet** - to facilitate the implementation of the map visualization
 * **ggmap** - to create the map used in one of the visualizations
 * **shinythemes** - to use built-in shiny app themes
+* **prophet** - to predict seasonal pricing data. Learn more [here](https://facebook.github.io/prophet/)
