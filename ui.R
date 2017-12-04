@@ -36,8 +36,10 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                         mainPanel(
                           tabsetPanel(
                             tabPanel("Sales", plotlyOutput("state.plot"),
+                                     tags$br(),
                                      tags$p('**Not all states have median sale data available.')), 
                             tabPanel("Rentals", plotlyOutput("state.rent.plot"),
+                                     tags$br(),
                                      tags$p('**Median rental data begins at various times for each state, starting at 2010'))
                           )
                         )
