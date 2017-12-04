@@ -80,6 +80,10 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                    )
                  )
                )
+             ), 
+             tabPanel("Conclusion",
+                      fluidRow(includeMarkdown("conclusion.md")
+                      )
              )
              
   )
