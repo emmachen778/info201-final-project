@@ -87,6 +87,9 @@ GetStateRentData <- function(my.states) {
   
   # Setting column names to date, then all input cities
   colnames(data) <- c("Date", selected$AREA)
+  
+  # Column of year for each date for filtering in state data tab
+  data$Year <- as.numeric(str_replace(data$Date, "-.*", ""))
   return(data)
 }
 

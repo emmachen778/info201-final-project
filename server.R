@@ -1,24 +1,49 @@
+# Shiny library
 library(shiny)
+
+# Quandl library - gets Zillow data
 library(Quandl)
+
+# Libraries for data manipulation
 library(dplyr)
-library(stringr)
-library(plotly)
 library(reshape2)
+
+# Library to deal with character data
+library(stringr)
+
+# Graphing libraries - leaflet is maps, plotly is everything else
+library(plotly)
 library(leaflet)
+
+# Library to get latitude and longitude data for map
 library(ggmap)
+
+# Prediction library - good for seasonal data
 library(prophet)
 
+# Loading in data and functions
 source("data.R")
 
 server <- function(input, output) {
+  
+  # Scatter plot to compare state sale data
   output$state.plot <- renderPlotly({
+    # Getting state sale data
     state.data <- GetStateSaleData(input$states) 
+    
+    # Melting the state data down to one column with a state identifier - so can be graphed
     melt.data <- state.data %>% 
       select(input$states) %>% 
       melt() 
+    
+    # Adding back the date and year columns
     melt.data$date <- state.data$Date
     melt.data$year <- state.data$Year
+    
+    # Filtering the data to only desired years
     melt.data <- filter(melt.data, year >= min(input$range), year <= max(input$range))
+    
+    # Scatter plot of home sale price by date, colored by state
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Home Sale Price ($)"),
              title = paste("Median Home Sale Price", min(input$range), "-", max(input$range)), margin = list(t=120))
