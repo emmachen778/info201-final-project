@@ -1,8 +1,17 @@
+# Library to use shiny
 library(shiny)
+
+# Libraries for graphing - leaflet for maps, plotly for everything else
 library(plotly)
 library(leaflet)
+
+# Themes to make shiny prettier
 library(shinythemes)
 
+# Library to use insert markdown documents into ui
+library(markdown)
+
+# Loading in data for use in inputs
 source("data.R")
 
 ui <- fluidPage(shinythemes::themeSelector(),
