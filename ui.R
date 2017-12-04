@@ -15,15 +15,6 @@ library(markdown)
 source("data.R")
 
 ui <- fluidPage(theme = shinytheme('flatly'),
-  tags$footer(title="Your footer here", align = "right", style = "
-              bottom:0;
-              width:100%;
-              height:50px; /* Height of the footer */
-              color: white;
-              padding: 10px;
-              background-color: black;
-              z-index: 1000;"
-                ),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
                       fluidRow(
