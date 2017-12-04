@@ -17,12 +17,9 @@ library(leaflet)
 
 # Library to get latitude and longitude data for map
 library(ggmap)
-<<<<<<< HEAD
-=======
 
 # Prediction library - good for seasonal data
 library(prophet)
->>>>>>> 7bd161665254dd40e00c458157a23f6fc00a078d
 
 # Loading in data and functions
 source("data.R")
