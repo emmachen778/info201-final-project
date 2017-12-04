@@ -25,6 +25,7 @@ server <- function(input, output) {
     return(p) 
   })
   
+  # Genrates plot based on rental prices for given state(s)
   output$state.rent.plot <- renderPlotly({
     state.data <- GetStateRentData(input$states) 
     melt.data <- state.data %>% 
@@ -39,6 +40,7 @@ server <- function(input, output) {
     return(p) 
   })
   
+  # Genrates plot based on sale prices for given city(cities)
   output$city.sale.plot <- renderPlotly({
     sale.data <- GetCitySaleData(input$cities)
     melt.data <- sale.data %>% 
@@ -51,6 +53,7 @@ server <- function(input, output) {
     return(p)
   })
   
+  # Genrates plot based on rental prices for given city(cities)
   output$city.rental.plot <- renderPlotly({
     rent.data <- GetCityRentData(input$cities)
     melt.data <- rent.data %>% 
@@ -63,6 +66,7 @@ server <- function(input, output) {
     return(p)
   })
   
+  # Generates the an interative map plot plot of the change in t median sale prices for the given city
   output$map <- renderLeaflet({
     city.loc <- data.frame(cities = input$cities)
     loc <- geocode(as.character(city.loc$cities))
@@ -82,6 +86,7 @@ server <- function(input, output) {
              addCircleMarkers(data = city.loc, radius = ~change / 10, label = ~label))
   })
   
+  # Predicts and plots the predicted median sale price for the given city
   output$predict.sale <- renderPlotly({
     predict.data <- PredictCitySalePrice(input$city)
     melt.data <- predict.data %>% 
@@ -92,7 +97,7 @@ server <- function(input, output) {
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Sale Price ($)"),
              title = "Median Sale Price for Current Data and Next 5 Years")
   })
-  
+  # Predicts and plots the predicted median rental price for the given city
   output$predict.rent <- renderPlotly({
     predict.data <- PredictCityRentalPrice(input$city)
     melt.data <- predict.data %>% 
