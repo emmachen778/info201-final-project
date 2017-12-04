@@ -14,7 +14,7 @@ library(markdown)
 # Loading in data for use in inputs
 source("data.R")
 
-ui <- fluidPage(theme = shinytheme('simplex'),
+ui <- fluidPage(theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
                       fluidRow(
