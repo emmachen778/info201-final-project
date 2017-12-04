@@ -21,7 +21,7 @@ server <- function(input, output) {
     melt.data <- filter(melt.data, year >= min(input$range), year <= max(input$range))
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Home Sale Price ($)"),
-             title = paste("Median Home Sale Price", min(input$range), "-", max(input$range)))
+             title = paste("Median Home Sale Price", min(input$range), "-", max(input$range)), margin = list(t=120))
     return(p) 
   })
   
@@ -36,7 +36,7 @@ server <- function(input, output) {
     melt.data <- filter(melt.data, year >= min(input$range), year <= max(input$range))
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Home Sale Price ($)"),
-             title = paste("Median Home Rental Price", min(input$range), "-", max(input$range)))
+             title = paste("Median Home Rental Price", min(input$range), "-", max(input$range)), margin = list(t=120))
     return(p) 
   })
   
@@ -49,7 +49,7 @@ server <- function(input, output) {
     melt.data$date <- sale.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Sale Price ($)"),
-             title = "Median Sale Price Over Time")
+             title = "Median Sale Price Over Time", margin = list(t = 120))
     return(p)
   })
   
@@ -62,7 +62,7 @@ server <- function(input, output) {
     melt.data$date <- rent.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Rental Price ($)"),
-             title = "Median Rental Price Over Time")
+             title = "Median Rental Price Over Time", margin = list(t=120))
     return(p)
   })
   
@@ -95,7 +95,7 @@ server <- function(input, output) {
     melt.data$date <- predict.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Sale Price ($)"),
-             title = "Median Sale Price for Current Data and Next 5 Years")
+             title = "Median Sale Price for Current Data and Next 5 Years", margin = list(t=120))
   })
   # Predicts and plots the predicted median rental price for the given city
   output$predict.rent <- renderPlotly({
@@ -106,6 +106,6 @@ server <- function(input, output) {
     melt.data$date <- predict.data$Date
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Rental Price ($)"),
-             title = "Median Rental Price for Current Data and Next 5 Years")
+             title = "Median Rental Price for Current Data and Next 5 Years", margin = list(t=120))
   })
 }

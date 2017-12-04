@@ -5,7 +5,7 @@ library(shinythemes)
 
 source("data.R")
 
-ui <- fluidPage(theme = shinythemes('flatly'),
+ui <- fluidPage(theme = shinytheme('flatly'),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
                       fluidRow(
