@@ -5,7 +5,7 @@ library(shinythemes)
 
 source("data.R")
 
-ui <- fluidPage(shinythemes::themeSelector(),
+ui <- fluidPage(theme = shinythemes('flatly'),
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
                       fluidRow(
@@ -23,8 +23,10 @@ ui <- fluidPage(shinythemes::themeSelector(),
                         ),
                         mainPanel(
                           tabsetPanel(
-                            tabPanel("Sales", plotlyOutput("state.plot")), 
-                            tabPanel("Rentals", plotlyOutput("state.rent.plot"))
+                            tabPanel("Sales", plotlyOutput("state.plot"),
+                                     tags$p('**Not all states have median sale data available.')), 
+                            tabPanel("Rentals", plotlyOutput("state.rent.plot"),
+                                     tags$p('**Median rental data begins at various times for each state, starting at 2010'))
                           )
                         )
                       )
