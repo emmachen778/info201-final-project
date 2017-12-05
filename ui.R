@@ -5,8 +5,9 @@ library(shiny)
 library(plotly)
 library(leaflet)
 
-# Themes to make shiny prettier
+# Themes & loaders to make shiny prettier
 library(shinythemes)
+library(shinycssloaders)
 
 # Library to use insert markdown documents into ui
 library(markdown)
@@ -45,11 +46,11 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           # Putting each graph into a separate tab
                           tabsetPanel(
                             # Median sale price for selected states over input years
-                            tabPanel("Sales", plotlyOutput("state.plot"),
+                            tabPanel("Sales", plotlyOutput("state.plot") %>% withSpinner(),
                                      tags$br(),
                                      tags$p('**Not all states have median sale data available.')), 
                             # Median rental price for selected states over input years
-                            tabPanel("Rentals", plotlyOutput("state.rent.plot"),
+                            tabPanel("Rentals", plotlyOutput("state.rent.plot") %>% withSpinner(),
                                      tags$br(),
                                      tags$p('**Median rental data begins at various times for each state, starting at 2010'))
                           )
@@ -78,9 +79,9 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                               )
                               ),
                             # Median sales price for input cities over all years of data
-                            tabPanel("Sales", plotlyOutput("city.sale.plot")),
+                            tabPanel("Sales", plotlyOutput("city.sale.plot")%>% withSpinner()),
                             # Median rental price for input cities over all years of data
-                            tabPanel("Rentals", plotlyOutput("city.rental.plot"))
+                            tabPanel("Rentals", plotlyOutput("city.rental.plot") %>% withSpinner())
                           )
                         )
                       )
@@ -98,9 +99,9 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                    # Separating each graph into an individual tab
                    tabsetPanel(
                       # Output graph of predicted median sales price for input city
-                      tabPanel("Sales", plotlyOutput("predict.sale")),
+                      tabPanel("Sales", plotlyOutput("predict.sale") %>% withSpinner()),
                       # Output graph of predicted median rental price for input city
-                      tabPanel("Rentals", plotlyOutput("predict.rent"))
+                      tabPanel("Rentals", plotlyOutput("predict.rent") %>% withSpinner())
                    )
                  )
                )
