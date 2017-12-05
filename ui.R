@@ -52,7 +52,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                             # Median rental price for selected states over input years
                             tabPanel("Rentals", plotlyOutput("state.rent.plot") %>% withSpinner(),
                                      tags$br(),
-                                     tags$p('**Median rental data begins at various times for each state, starting at 2010'))
+                                     tags$p('**Median rental data begins at in various years for each state, with the earliest starting in 2010'))
                           )
                         )
                       )
