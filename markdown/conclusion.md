@@ -7,5 +7,8 @@
 * In Seattle, rental prices tend to increase steadily until September then crash after. We hypothesize this is due to college students tring to find housing before the quarter starts.
 
 ### Notable Outliers
-* In Issaquah, predictions for median sale price are completely thrown off by December 2013, when the median sale price jumped to ~$12.5 million.
+* In some cities, predictions for median sale price are completely thrown off when the median sale prices jump to very large values:
+    * Issaquah: In December 2013, the median sale price jumped to ~$12.5 million.
+    * Auburn: In November 2013, the median sale price jumped to ~$4.12 million.
+    * Kenmore: In June 2010, the median sale price jumped to ~$8.09 million.
 * California is the highest state by far when it comes to median sale prices, but New York wins when it comes to median rental prices.
