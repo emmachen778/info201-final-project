@@ -110,7 +110,10 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                       # Text of conclusion - in markdown folder
                       fluidRow(includeMarkdown("./markdown/conclusion.md")
                       )
-             )
+             ),
+             br(),
+             hr(),
+             p("INFO 201 | December 2017 | James McCutcheon, Laura Freeman, Gaege Baxter, Emma Chen, Emily Tao", align = "center")
              
   )
 )

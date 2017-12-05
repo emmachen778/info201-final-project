@@ -2,7 +2,7 @@
 Property values and rental prices factor heavily into a buyer's decisions. By comparing these values geographically, we aim to help buyers and renters make informed decisions.
 
 ### Target Audience
- While this report may be useful to numerous groups, we are focusing on **normal consumer (i.e. not a corporation) home buyers/renters in Washington state** as our target audience. We do not have access to the breadth of data that would bring in researchers and investors, but our visualizations clearly show pricing data for different states compared to Washington and cities in Washington. We also show predictions for rental and housing prices in different Washington cities, which when combined with the above information will allow consumers make an informed housing decision.
+ While this report may be useful to numerous groups, we are focusing on **normal consumer (i.e. not a corporation) home buyers/renters in Washington state** as our target audience. We do not have access to the breadth of data that would bring in researchers and investors, but our visualizations clearly show pricing data for different states compared to Washington and cities in Washington. We also show predictions for rental and housing prices in different Washington cities; when combined with the above information, this will allow consumers make an informed housing decision.
 
 ### Questions Answered
 * How have median home sale prices changed across different US states from 1996 to the present?
