@@ -173,7 +173,7 @@ server <- function(input, output) {
       select(Predicted, Actual) %>% 
       melt()
     
-    # Adding back date column
+    # Adding date column back into melted data
     melt.data$date <- predict.data$Date
     
     # Line plot of median rental price to date, colored by identity as predicted or actual
