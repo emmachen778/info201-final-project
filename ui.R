@@ -14,30 +14,41 @@ library(markdown)
 # Loading in data for use in inputs
 source("data.R")
 
+# Selecting the Flatly shiny theme
 ui <- fluidPage(theme = shinytheme('flatly'),
+  # Intro page with banner, welcome, and background information on the project and interesting libraries used              
   navbarPage("Zillow Housing Data",
              tabPanel("Home",
+                      # Our header image - in www folder as standard
                       fluidRow(
                         column(width = 12, img(src="banner.png", style = "display: block; margin-left: auto; margin-right: auto; width: 100%;"))
                       ),
+                      # Text elements, linked to markdown files in markdown folder
                       fluidRow(
-                        column(width = 3, offset = 1, includeMarkdown("quandl.md")),
-                        column(7, includeMarkdown("welcome.md"))
+                        column(width = 3, offset = 1, includeMarkdown("./markdown/quandl.md")),
+                        column(7, includeMarkdown("./markdown/welcome.md"))
                       )
              ),
-             
+             # Tab to compare median sales and rental prices by state
              tabPanel("State Data",
+                      # Sidebar for widgets - input
                       sidebarLayout(
                         sidebarPanel(
+                          # Dropdown menu to select one or multiple states
                           selectInput("states", label = "Select Your Desired State(s)", choices = states$AREA, multiple = T, selected = "Washington"),
+                          # Slider menu to select range of years
                           sliderInput("range", label = "Select a Year Range", sep = "", min = 1996, max = as.integer(format(Sys.Date(), "%Y")) - 1, 
                                       value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1))
                         ),
+                        # Main panel for output graphs
                         mainPanel(
+                          # Putting each graph into a separate tab
                           tabsetPanel(
+                            # Median sale price for selected states over input years
                             tabPanel("Sales", plotlyOutput("state.plot"),
                                      tags$br(),
                                      tags$p('**Not all states have median sale data available.')), 
+                            # Median rental price for selected states over input years
                             tabPanel("Rentals", plotlyOutput("state.rent.plot"),
                                      tags$br(),
                                      tags$p('**Median rental data begins at various times for each state, starting at 2010'))
@@ -45,14 +56,19 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                         )
                       )
              ),
-             
+             # Tab to compare median sales and rental price by Washington city along with percent change median sales prices for those cities
              tabPanel("City Data",
+                      # Sidebar for widgets - input
                       sidebarLayout(
                         sidebarPanel(
+                          # Dropdown menu to select one or multiple Washington cities
                           selectInput("cities", label = "Select Your Desired City/Cities", choices = wa.cities$city, multiple = T, selected = "Seattle")
                         ),
+                        # Main panel for output graphs
                         mainPanel(
+                          # Putting each graph into a separate tab
                           tabsetPanel(
+                            # Map of percent change in median sale price for input cities over all years of data
                             tabPanel(
                               "Map", tags$h3("Change in Median Sale Prices"), leafletOutput("map"),
                               tags$div(tags$br(),
@@ -61,28 +77,38 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                                        
                               )
                               ),
+                            # Median sales price for input cities over all years of data
                             tabPanel("Sales", plotlyOutput("city.sale.plot")),
+                            # Median rental price for input cities over all years of data
                             tabPanel("Rentals", plotlyOutput("city.rental.plot"))
                           )
                         )
                       )
              ),
-             
+             # Tab to predict sales and rental prices for a singular Washington city
              tabPanel("Predicted City Prices",
+               # Sidebar for input widgets       
                sidebarLayout(
                  sidebarPanel(
+                   # Select one Washington city - dropdown menu
                    selectInput("city", label = "Select Your Desired City", choices = wa.cities$city, multiple = F, selected = "Seattle")
                  ), 
+                 # Main panel for output visuals
                  mainPanel(
+                   # Separating each graph into an individual tab
                    tabsetPanel(
+                      # Output graph of predicted median sales price for input city
                       tabPanel("Sales", plotlyOutput("predict.sale")),
+                      # Output graph of predicted median rental price for input city
                       tabPanel("Rentals", plotlyOutput("predict.rent"))
                    )
                  )
                )
              ), 
+             # Conclusion tab - interesting trends/outliers
              tabPanel("Conclusion",
-                      fluidRow(includeMarkdown("conclusion.md")
+                      # Text of conclusion - in markdown folder
+                      fluidRow(includeMarkdown("./markdown/conclusion.md")
                       )
              )
              
