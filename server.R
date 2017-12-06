@@ -19,7 +19,7 @@ library(leaflet)
 library(ggmap)
 
 # Prediction library - good for seasonal data
-library(prophet)
+# library(prophet)
 
 # Loading in data and functions
 source("data.R")

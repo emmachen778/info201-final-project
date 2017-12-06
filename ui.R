@@ -109,7 +109,9 @@ ui <- fluidPage(theme = shinytheme('flatly'),
              # Conclusion tab - interesting trends/outliers
              tabPanel("Conclusion",
                       # Text of conclusion - in markdown folder
-                      fluidRow(includeMarkdown("./markdown/conclusion.md")
+                      fluidRow(
+                        column(width = 5, offset = 1, includeMarkdown("./markdown/conclusion-trends.md")),
+                        column(5, includeMarkdown("./markdown/conclusion-outliers.md"))
                       )
              ),
              br(),
