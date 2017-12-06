@@ -1,10 +1,10 @@
 # Library to use shiny
 library(shiny)
-
+library(Quandl)
 # Libraries for graphing - leaflet for maps, plotly for everything else
 library(plotly)
 library(leaflet)
-
+library(stringr)
 # Themes & loaders to make shiny prettier
 library(shinythemes)
 library(shinycssloaders)
@@ -13,7 +13,7 @@ library(shinycssloaders)
 library(markdown)
 
 # Loading in data for use in inputs
-source("data.R")
+source("data.r")
 
 # Selecting the Flatly shiny theme
 ui <- fluidPage(theme = shinytheme('flatly'),

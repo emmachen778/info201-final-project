@@ -22,7 +22,7 @@ library(ggmap)
 library(prophet)
 
 # Loading in data and functions
-source("data.R")
+source("data.r")
 
 server <- function(input, output) {
   
