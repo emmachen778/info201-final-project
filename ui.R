@@ -40,8 +40,8 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           # Slider menu to select range of years
                           sliderInput("range", label = "Select a Year Range", sep = "", min = 1996, max = as.integer(format(Sys.Date(), "%Y")) - 1, 
                                       value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1)),
-                          tags$p("These graphs display the median sale and rental prices of the selected states within
-                                 the selected years. ")
+                          tags$p("These graphs chart the median sale and rental prices in the selected states over the selected years. ***More about 
+                                 why this matters***")
                         ),
                         # Main panel for output graphs
                         mainPanel(
@@ -65,7 +65,12 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                       sidebarLayout(
                         sidebarPanel(
                           # Dropdown menu to select one or multiple Washington cities
-                          selectInput("cities", label = "Select Your Desired City/Cities", choices = wa.cities$city, multiple = T, selected = "Seattle")
+                          selectInput("cities", label = "Select Your Desired City/Cities", choices = wa.cities$city, multiple = T, selected = "Seattle"),
+                          tags$div(tags$p("These visualizations summarize data for the selected cities. The map shows the locations of the selected city/cities, 
+                                          indicated by a circle. The circle sizes are scaled relative to the percent change in median sale prices over time. 
+                                          ***More on why this matters**"), 
+                                   tags$br(),
+                                   tags$p("The graphs display the median sale and rental prices for the selected cities. ***More on why this matters"))
                         ),
                         # Main panel for output graphs
                         mainPanel(
@@ -76,7 +81,8 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                               "Map", tags$h3("Change in Median Sale Prices"), leafletOutput("map"),
                               tags$div(tags$br(),
                                        tags$p("This map shows the location of the selected city/cities, indicated by a circle. 
-                                              The circle sizes are scaled relative to the percent change in median sale prices over time.")
+                                              The circle sizes are scaled relative to the percent change in median sale prices over time. 
+                                              ***More on why this matters**")
                                        
                               )
                               ),
