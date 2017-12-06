@@ -1,0 +1,12 @@
+name: info201-final-project
+title: info201-final-project
+username:
+account: jamesbmc
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 244849
+bundleId: 1117946
+url: https://jamesbmc.shinyapps.io/info201-final-project/
+when: 1512528620.17345
+asMultiple: FALSE
+asStatic: FALSE
