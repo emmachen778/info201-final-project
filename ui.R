@@ -49,6 +49,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           tags$p("These graphs display the median sale and rental prices of the selected states within
                                  the selected years. We chose to use line graphs to clearly show pricing trends.")
                         ),
+                        
                         # Main panel for output graphs
                         mainPanel(
                           # Putting each graph into a separate tab
@@ -77,6 +78,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                                  price trends for the individual cities. The two graphs show the median sale and rental values for each city over time. Again, we used a line 
                                  graph to clearly demonstrate pricing trends.")
                         ),
+                        
                         # Main panel for output graphs
                         mainPanel(
                           # Putting each graph into a separate tab
@@ -104,6 +106,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           encompass the data we already have plus another five years to try and predict future pricing trends.
                           We used line graphs to clearly represent the nature of these pricing trends.")
                  ), 
+                 
                  # Main panel for output visuals
                  mainPanel(
                    # Separating each graph into an individual tab
