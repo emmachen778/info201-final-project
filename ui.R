@@ -84,9 +84,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           # Putting each graph into a separate tab
                           tabsetPanel(
                             # Map of percent change in median sale price for input cities over all years of data
-                            tabPanel(
-                              "Map", tags$h3("Change in Median Sale Prices"), leafletOutput("map") %>% withSpinner()
-                            ),
+                            tabPanel("Map", tags$h3("Change in Median Sale Prices"), leafletOutput("map") %>% withSpinner()),
                             # Median sales price for input cities over all years of data
                             tabPanel("Sales", plotlyOutput("city.sale.plot")%>% withSpinner()),
                             # Median rental price for input cities over all years of data
