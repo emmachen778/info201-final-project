@@ -1,10 +1,16 @@
 # Library to use shiny
 library(shiny)
+
+# Library to load Quandl data - data.r
 library(Quandl)
+
 # Libraries for graphing - leaflet for maps, plotly for everything else
 library(plotly)
 library(leaflet)
+
+# Library to manipulate strings in data.r file
 library(stringr)
+
 # Themes & loaders to make shiny prettier
 library(shinythemes)
 library(shinycssloaders)
