@@ -50,7 +50,7 @@ server <- function(input, output) {
     return(p) 
   })
   
-  # Genrates plot based on rental prices for given state(s)
+  # Generates plot based on rental prices for given state(s)
   output$state.rent.plot <- renderPlotly({
     # Getting state rental data
     state.data <- GetStateRentData(input$states) 
@@ -74,7 +74,7 @@ server <- function(input, output) {
     return(p) 
   })
   
-  # Genrates plot based on sale prices for given city(cities)
+  # Generates plot based on sale prices for given city or cities
   output$city.sale.plot <- renderPlotly({
     # Getting sale data for input cities
     sale.data <- GetCitySaleData(input$cities)
@@ -94,7 +94,7 @@ server <- function(input, output) {
     return(p)
   })
   
-  # Genrates plot based on rental prices for given city(cities)
+  # Generates plot based on rental prices for given city or cities
   output$city.rental.plot <- renderPlotly({
     # Getting rental data for selected cities
     rent.data <- GetCityRentData(input$cities)
@@ -137,7 +137,7 @@ server <- function(input, output) {
     city.loc$change <- percent.change$change
     
     # Label for each percent change
-    city.loc$label <- paste0(city.loc$cities, ' - Percent Change: ', round(city.loc$change, 4), '%')
+    city.loc$label <- paste0(city.loc$cities, ' - Percent Change: ', round(city.loc$change, 1), '%')
     
     # Returning a map of the location of each city (circles), the circles are sized by percent change in median sale price
     return(leaflet() %>% 
@@ -158,11 +158,12 @@ server <- function(input, output) {
     # Adding back date column
     melt.data$date <- predict.data$Date
     
-    # Line plot of median sale price to date, colored by whether is actual data or predicted
+    # Line plot of median sale price to date, colored by whether line is graphing actual data or predicted data
     p <- plot_ly(data = melt.data, type = "scatter", mode = "lines", x = ~date, y = ~value, color = ~variable) %>% 
       layout(xaxis = list(title = "Date"), yaxis = list(title = "Median Sale Price ($)"),
              title = "Median Sale Price for Current Data and Next 5 Years", margin = list(t=120))
   })
+  
   # Predicts and plots the predicted median rental price for the given city
   output$predict.rent <- renderPlotly({
     # Getting predicted rental prices for a city

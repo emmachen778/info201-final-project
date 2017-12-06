@@ -8,3 +8,4 @@ We introduced several new R libraries to help format the application and wrangle
 * **leaflet** - to facilitate the implementation of the map visualization
 * **ggmap** - to obtain latitude and longitude data for cities
 * **shinythemes** - to use built-in shiny app themes
+* **shinycssloaders** - to obtain loading icons when recalculating graphs

@@ -1,2 +1,2 @@
-# info201-final-project
-Final Project for INFO 201 (Autumn 2017)
+# INFO 201 Final Project
+This project pulls data from the [Zillow portion](https://www.quandl.com/data/ZILLOW-Zillow-Real-Estate-Research/documentation/data-organization) of the [Quandl API](https://docs.quandl.com/). We seek to provide consumers seeking housing in Washington state with information about median sale and rental prices compared to other states and between cities. Furthermore, we seek to provide insight as to what housing prices could look like in the next five years for cities in Washington. Our website is built with the [R shiny package](https://shiny.rstudio.com/) and can be found [here](https://jamesbmc.shinyapps.io/info201-final-project/)

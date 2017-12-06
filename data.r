@@ -129,6 +129,7 @@ PredictCitySalePrice <- function(city) {
   return(join.data)
 }
 
+# Predicting rental price for an input city
 PredictCityRentalPrice <- function(city) {
   # Getting rent data for a city
   data <- GetCityRentData(city) 
