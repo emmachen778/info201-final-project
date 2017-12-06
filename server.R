@@ -137,7 +137,7 @@ server <- function(input, output) {
     city.loc$change <- percent.change$change
     
     # Label for each percent change
-    city.loc$label <- paste0(city.loc$cities, ' - Percent Change: ', round(city.loc$change, 4), '%')
+    city.loc$label <- paste0(city.loc$cities, ' - Percent Change: ', round(city.loc$change, 1), '%')
     
     # Returning a map of the location of each city (circles), the circles are sized by percent change in median sale price
     return(leaflet() %>% 
