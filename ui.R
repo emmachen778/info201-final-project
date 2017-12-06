@@ -39,7 +39,9 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           selectInput("states", label = "Select Your Desired State(s)", choices = states$AREA, multiple = T, selected = "Washington"),
                           # Slider menu to select range of years
                           sliderInput("range", label = "Select a Year Range", sep = "", min = 1996, max = as.integer(format(Sys.Date(), "%Y")) - 1, 
-                                      value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1))
+                                      value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1)),
+                          tags$p("These graphs display the median sale and rental prices of the selected states within
+                                 the selected years. ")
                         ),
                         # Main panel for output graphs
                         mainPanel(
