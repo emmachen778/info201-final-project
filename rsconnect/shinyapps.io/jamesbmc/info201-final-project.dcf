@@ -5,8 +5,8 @@ account: jamesbmc
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 244849
-bundleId: 1120363
+bundleId: 1120372
 url: https://jamesbmc.shinyapps.io/info201-final-project/
-when: 1512628437.90275
+when: 1512628821.52566
 asMultiple: FALSE
 asStatic: FALSE

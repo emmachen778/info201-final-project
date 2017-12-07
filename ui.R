@@ -128,7 +128,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
              br(),
              hr(),
              p("INFO 201 | Fall 2017 | James McCutcheon, Laura Freeman, William Baxter, Emma Chen, Emily Tao", align = "center"),
-             p("Link to ", a("GitHub", href = "https://github.com/emmachen778/info201-final-project"), "Repository", align = "center")
+             p("Link to ", a("GitHub Repository", href = "https://github.com/emmachen778/info201-final-project"), align = "center")
              
   )
 )
