@@ -47,7 +47,7 @@ ui <- fluidPage(theme = shinytheme('flatly'),
                           sliderInput("range", label = "Select a Year Range", sep = "", min = 1996, max = as.integer(format(Sys.Date(), "%Y")) - 1, 
                                       value = c(1996, as.integer(format(Sys.Date(), "%Y")) - 1)),
                           tags$p("These graphs display the median sale and rental prices of the selected states within
-                                 the selected years. We chose to use line graphs to clearly show pricing trends.")
+                                 the selected years. We chose to use line graphs because they clearly show pricing trends.")
                         ),
                         
                         # Main panel for output graphs
